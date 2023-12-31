@@ -6,7 +6,10 @@ class ClassComp extends React.Component{
         this.state={
             count:0
         }
- 
+        console.log("constructor");
+     }
+     componentDidUpdate(){
+        console.log("update");
      }
      OnchangeCount=()=>{
         this.setState({
@@ -18,8 +21,20 @@ class ClassComp extends React.Component{
             count:this.state.count-1
         })
      }
+     componentDidMount(){
+        fetch("https://jsonplaceholder.typicode.com/photos")
+        .then((response)=>response.json())
+        .then((users)=>console.log(users))
+        console.log("componentDidMount");
+     }
+     componentDidCatch(){
+        
+     }
+     componentWillUnmount(){
+       console.log("unmount");
+     }
     render(){
-   
+        console.log("render");
         return(
             <div>
             <h1> Count is {this.state.count}</h1>
