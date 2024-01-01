@@ -1,12 +1,16 @@
 import React from "react";
 
 class ClassComp extends React.Component{
-     constructor(){
-        super()
+     constructor(props){
+        super(props)
         this.state={
             count:0
         }
+        this.handleClick=this.handleClick.bind(this);
         console.log("constructor");
+     }
+     handleClick (id){
+        console.log("Clicked!",id);
      }
      componentDidUpdate(){
         console.log("update");
@@ -35,11 +39,13 @@ class ClassComp extends React.Component{
      }
     render(){
         console.log("render");
+        let id =2;
         return(
             <div>
             <h1> Count is {this.state.count}</h1>
             <button onClick={this.OnchangeCount}>Increment Count</button>
             <button onClick={this.DecrementCount}>Decrement Count</button>
+            <button onClick={()=>this.handleClick(id)}>Event handle</button>
             </div>
         )
     }
