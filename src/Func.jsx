@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const Func = (newProps) => {
     const [count ,setCount] =useState(0);
     const [isLogin,setIsLogin]=useState(true)
+    const[initialValue,setInitialValue]=useState("")
     console.log(newProps);
     const OnIncrement=()=>{
         setCount(count+1)
@@ -22,6 +23,11 @@ const Func = (newProps) => {
       id:2,
       title:"List3"
     }]
+
+    const handleOnchange=(e)=>{
+           setInitialValue(e.target.value)
+           console.log(initialValue);
+    }
   return (
     <div>
       {isLogin?
@@ -38,6 +44,7 @@ const Func = (newProps) => {
             )}
        
           </ul>
+          <input type="text" name="text" id="text" value={initialValue} onChange={(e)=>handleOnchange(e)} />
         </div>
         </>
 
