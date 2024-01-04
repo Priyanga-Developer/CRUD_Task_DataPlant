@@ -1,17 +1,81 @@
+import { useContext } from 'react';
 import './App.css'
-import ClassComp from './Class'
-import ErrorBoundary from './ErrorBoundary'
-import Func from './Func'
+// import ClassComp from './Class'
+// import ErrorBoundary from './ErrorBoundary'
+// import Func from './Func'
+// import Login from './Component/Login'
+// import Main from "./Component/Main"
+// import {createBrowserRouter,Outlet ,RouterProvider ,redirect,Navigate} from "react-router-dom"
+// import React from 'react'
+// import Header from './Component/Header'
+// import ProtectedRoute from './Component/ProtectedRoute'
 
-function App() {
-  const newData="this is prop"
+// const AppLayout = () => { 
+
+//   return (
+//     <div className='App'>
+//        <Header/>
+//        <Outlet/>
+//     </div>
+//   )
+  
+// }
+// const loggedIn=true
+
+// const Router=createBrowserRouter([{
+//   path:"/",
+//   // loader: () => (loggedIn ? redirect('/Login') : null),
+//   element:<AppLayout/>,
+//   children:[
+//     {
+//     path:"/",
+//     element:
+//     <ProtectedRoute>
+//        <Main/>
+//     </ProtectedRoute>,
+//     },
+//     {
+//       path:"/Login",
+//       element:<Login/>,
+//     },
+// ]
+// }])
+
+// const App=()=> <RouterProvider router={Router}/>
+// export default App
+
+// function App() {
+//   const newData="this is prop"
+//   return (
+//     <>
+//     <Login/>
+//     <ErrorBoundary>
+//         <ClassComp/>
+//      </ErrorBoundary>
+//      <Func newprop={newData}/>
+//     </>
+//   )
+// }
+
+// export default App
+
+import React, { useEffect, useState } from 'react'
+import DataContext from './Hooks/DataContext';
+import Ref from './Ref';
+
+const App = () => {
+ const {count,handleOnclick}=useContext(DataContext)
+console.log("function1");
+useEffect (()=>{
+   console.log("useEffect");
+},[])
+console.log("function2");
   return (
-    <>
-    <ErrorBoundary>
-        <ClassComp/>
-     </ErrorBoundary>
-     <Func newprop={newData}/>
-    </>
+    <div>
+      <h1>{count}</h1>
+      <button type="button" onClick={()=>handleOnclick()}>count</button>
+      <Ref/>
+    </div>
   )
 }
 
