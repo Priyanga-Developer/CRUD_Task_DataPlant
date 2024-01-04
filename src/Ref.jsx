@@ -4,6 +4,8 @@ const Ref = () => {
     const [myNum ,setMyNum]=useState(0);
     const inputOne=useRef();
     const inputTwo=useRef();
+    const countVal =useRef(0);
+    
   const getOne=()=>{
     console.log("hello");
     console.log(inputOne.current);
@@ -13,6 +15,10 @@ const Ref = () => {
   console.log("world");
   console.log(inputTwo.current);
   inputTwo.current.focus();
+ }
+ const getCount=()=>{
+   countVal.current=countVal.current+1;
+   console.log(countVal.current ,"counter");
  }
   return (
     <div>
@@ -30,8 +36,10 @@ const Ref = () => {
         value={myNum}
         onChange={(e)=>setMyNum(e.target.value)}
          />
+         <h3>Count Value is {countVal.current}</h3>
          <button type="button" onClick={()=>getOne()}>Rupees</button>
          <button type="button" onClick={()=>getTwo()}>Dollars</button>
+         <button type="button" onClick={()=>getCount()}>Counting</button>
     </div>
   )
 }
