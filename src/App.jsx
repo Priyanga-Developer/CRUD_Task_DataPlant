@@ -59,22 +59,26 @@ import './App.css'
 
 // export default App
 
-import React, { useEffect, useState } from 'react'
-import DataContext from './Hooks/DataContext';
-import Ref from './Ref';
+import React from 'react'
+// import DataContext from './Hooks/DataContext';
+// import Ref from './Ref';
+import Memo from './Memo';
 
 const App = () => {
- const {count,handleOnclick}=useContext(DataContext)
-console.log("function1");
-useEffect (()=>{
-   console.log("useEffect");
-},[])
-console.log("function2");
+//  const {count,handleOnclick}=useContext(DataContext)
+// console.log("function1");
+// useEffect (()=>{
+//    console.log("useEffect");
+// },[])
+// console.log("function2");
   return (
     <div>
-      <h1>{count}</h1>
-      <button type="button" onClick={()=>handleOnclick()}>count</button>
-      <Ref/>
+       <h2>Hii</h2>
+      {/* <h1>{count}</h1>
+      <button type="button" onClick={()=>handleOnclick()}>count</button> */}
+      {/* <Ref/> */}
+      <Memo/>
+      
     </div>
   )
 }
