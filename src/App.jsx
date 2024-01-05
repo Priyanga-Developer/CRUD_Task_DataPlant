@@ -67,6 +67,7 @@ import Callback from './Callback';
 import Reducer from './Reducer';
 import Event from './Event';
 import ControlledInputs from './ControlledInputs';
+import ToDo from './ToDo';
 
 const App = () => {
 //  const {count,handleOnclick}=useContext(DataContext)
@@ -85,7 +86,8 @@ const App = () => {
       {/* <Callback/> */}
       {/* <Reducer/> */}
       {/* <Event/> */}
-      <ControlledInputs/>
+      {/* <ControlledInputs/> */}
+      <ToDo/>
       
       
       

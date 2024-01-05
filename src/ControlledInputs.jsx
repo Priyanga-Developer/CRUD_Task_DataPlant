@@ -22,7 +22,7 @@ class ControlledInputs extends Component  {
             />
             <button type='submit'>Click</button>
 
-            </form>
+            </form> 
           
             </>
         )
