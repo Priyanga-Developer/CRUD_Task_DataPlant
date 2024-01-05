@@ -63,6 +63,8 @@ import React from 'react'
 // import DataContext from './Hooks/DataContext';
 // import Ref from './Ref';
 import Memo from './Memo';
+import Callback from './Callback';
+import Reducer from './Reducer';
 
 const App = () => {
 //  const {count,handleOnclick}=useContext(DataContext)
@@ -77,7 +79,11 @@ const App = () => {
       {/* <h1>{count}</h1>
       <button type="button" onClick={()=>handleOnclick()}>count</button> */}
       {/* <Ref/> */}
-      <Memo/>
+      {/* <Memo/> */}
+      {/* <Callback/> */}
+      <Reducer/>
+      
+      
       
     </div>
   )
