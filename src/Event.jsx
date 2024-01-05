@@ -1,20 +1,28 @@
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 
-const Event = () => {
-    const [count ,setCount]=useState(0);
-    const handleCount =()=>{
-        setCount(count+1)
+class Event extends Component{
+    constructor(props){
+        super(props)
+        this.state={
+            count:0
+        }
+        this.handleClick=this.handleClick.bind(this);
     }
-  return (
-    <div>
-        <h2>Event Handlers</h2>
-        <p>The Count is {count}</p>
-        <button 
-         type="button" 
-         onClick={(e)=>handleCount(e)}>Count</button>
-         {/* {handleCount()} click events happens without clicking */}
-    </div>
-  )
+    handleClick(){
+        this.setState({
+            count:this.state.count+1
+        })
+    }
+
+    render(){
+        return(
+            <>
+           <h1>Handling Events</h1>
+           <p>The count is {this.state.count}</p>
+           <button type='button' onClick={this.handleClick}>Count</button>
+           </>
+        )
+    }
 }
 
 export default Event
