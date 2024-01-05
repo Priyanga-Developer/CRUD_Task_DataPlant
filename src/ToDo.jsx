@@ -1,9 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import apiRequest from './apiRequest';
 
 const ToDo = () => {
-    const [list,setList]=useState(JSON.parse( localStorage.getItem("todo_list"))||[]);
+    const [list,setList]=useState([]);
     const [task,setTask]=useState("");
-    const addItem=(task)=>{
+    const API_URL="http://localhost:3500/todo_list"
+    useEffect(()=>{
+    const fetchItems=async()=>{
+        try {
+        const results =await fetch(API_URL);
+         const listData=await results.json();
+         setList(listData)
+            
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+    fetchItems();
+    },[])
+    const addItem=async(task)=>{
       const newItem ={
         id:Date.now(),
         task:task,
@@ -11,26 +26,53 @@ const ToDo = () => {
       }
       const listItems=[...list,newItem]
       setList(listItems);
-      localStorage.setItem("todo_list",JSON.stringify(listItems))
+      const postOptions={
+        method:"POST",
+        headers:{
+            'Content-Type':'application/JSON'
+        },
+        body:JSON.stringify(newItem)
+      }
+      const result=await apiRequest(API_URL,postOptions);
+      if(result) throw Error("please check once")
+      
     }
     const handleSubmit=()=>{
           addItem(task);
           setTask("")
     }
-    const handleCheck=(id)=>{
+    const handleCheck=async(id)=>{
         const items=list.map((eachList)=>
             eachList.id==id ? {...eachList,checked:!eachList.checked}:eachList
         )
         setList(items);
-        localStorage.setItem("todo_list",JSON.stringify(items))
+        const filterItem=items.filter((items)=>items.id===id)
+        const patchOptions={
+            method:"PATCH",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({checked:filterItem[0].checked})
+        }
+        const requestURL=`${API_URL}/${id}`
+        const result=await apiRequest(requestURL,patchOptions);
+    
     }
-    const handleDelete=(id)=>{
+    const handleDelete=async(id)=>{
         const filterItems=list.filter((eachList)=>{
             return eachList.id!==id
         })
         setList(filterItems);
-        localStorage.setItem("todo_list",JSON.stringify(filterItems))
-
+        const deleteOptions={
+            method:"DELETE",
+            headers:{
+                'content-Type':'application/JSON'
+            },
+            body:JSON.stringify(filterItems)
+        }
+      const reqURL=`${API_URL}/${id}`
+      const request=await apiRequest(reqURL,deleteOptions);
+ 
     }
   return (
     <div>
