@@ -77,7 +77,7 @@ import PostPage from './RouterComponents/PostPage';
 import Post from "./RouterComponents/Post";
 import Missing from './RouterComponents/Missing';
 import { auth ,provider} from "./firebase/firebaseconfig";
-import { onAuthStateChanged, signInWithPopup ,createUserWithEmailAndPassword, updateProfile} from "firebase/auth"
+import { onAuthStateChanged, signInWithPopup ,createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut} from "firebase/auth"
 
 const App = () => {
 //  const {count,handleOnclick}=useContext(DataContext)
@@ -120,6 +120,25 @@ const handleSignUp=async()=>{
   }
  
 }
+const handleLogin=async()=>{
+  try {
+    const result=await signInWithEmailAndPassword(auth,email,password);
+    console.log(result.user);
+    
+  } catch (error) {
+    console.log(error.message);
+    
+  }
+}
+
+const handleSignOut=async()=>{
+  try {
+      await signOut(auth);
+      console.log("signout successsfully");
+  } catch (error) {
+    console.log(error.message); 
+  }
+}
 
   return (
     <div>
@@ -147,10 +166,12 @@ const handleSignUp=async()=>{
       <h1>Login using Google</h1>
       <button type='button' onClick={()=>handleGoogleLogin()}>Login Using Google</button>
       <form action="" onSubmit={(e)=>e.preventDefault()}>
-        <input type="text" placeholder='enter the name' value={name} onChange={(e)=>setName(e.target.value)}/>
+        {/* <input type="text" placeholder='enter the name' value={name} onChange={(e)=>setName(e.target.value)}/> */}
         <input type="email" placeholder='enter the email'  value={email} onChange={(e)=>setEmail(e.target.value)}/>
         <input type="password" placeholder='enter the password'  value={password} onChange={(e)=>setPassword(e.target.value)} />
-        <button type='button' onClick={()=>handleSignUp()}> Sign Up using email and password </button>
+        {/* <button type='button' onClick={()=>handleSignUp()}> Sign Up using email and password </button> */}
+        <button type='button' onClick={()=>handleLogin()}> Sign Up using email and password </button>
+        <button type='button' onClick={()=>handleSignOut()}>SignOut</button>
       </form>
     </div>
   )
