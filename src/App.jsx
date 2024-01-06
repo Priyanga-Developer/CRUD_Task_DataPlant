@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import './App.css'
+
 // import ClassComp from './Class'
 // import ErrorBoundary from './ErrorBoundary'
 // import Func from './Func'
@@ -62,12 +62,33 @@ import './App.css'
 import React from 'react'
 // import DataContext from './Hooks/DataContext';
 // import Ref from './Ref';
-import Memo from './Memo';
-import Callback from './Callback';
-import Reducer from './Reducer';
-import Event from './Event';
-import ControlledInputs from './ControlledInputs';
-import ToDo from './ToDo';
+// import Memo from './Memo';
+// import Callback from './Callback';
+// import Reducer from './Reducer';
+// import Event from './Event';
+// import ControlledInputs from './ControlledInputs';
+// import ToDo from './ToDo';
+import Header from './RouterComponents/Header';
+import Footer from './RouterComponents/Footer';
+import { Outlet, Route, Routes } from 'react-router-dom';
+import Home from './RouterComponents/Home';
+import About from './RouterComponents/About';
+import PostPage from './RouterComponents/PostPage';
+import Post from "./RouterComponents/Post";
+import Missing from './RouterComponents/Missing';
+
+
+ export const DashBoard = () => {
+  return (
+    <div >
+      <h1>Dashboard</h1>
+    
+      <Outlet/>
+    </div>
+  )
+}
+
+
 
 const App = () => {
 //  const {count,handleOnclick}=useContext(DataContext)
@@ -78,19 +99,27 @@ const App = () => {
 // console.log("function2");
   return (
     <div>
-       <h2>Hii</h2>
       {/* <h1>{count}</h1>
       <button type="button" onClick={()=>handleOnclick()}>count</button> */}
       {/* <Ref/> */}
       {/* <Memo/> */}
       {/* <Callback/> */}
       {/* <Reducer/> */}
-      {/* <Event/> */}
+      {/* <Event/> */}   
       {/* <ControlledInputs/> */}
-      <ToDo/>
-      
-      
-      
+      {/* <ToDo/> */}
+      <Header/>
+      <Footer/>
+      <Routes>
+        <Route path='/' element={<DashBoard/>}/>
+        <Route path='home' element={<Home/>}/>
+        <Route path='about' element={<About/>}/>
+        <Route path='postPage'>
+          <Route index  element={<PostPage/>}/>
+          <Route path=':id' element={<Post/>}/>
+        </Route>
+        <Route path='*' element={<Missing/>}/>
+      </Routes>
     </div>
   )
 }

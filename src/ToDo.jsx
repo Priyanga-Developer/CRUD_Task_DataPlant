@@ -88,20 +88,16 @@ const ToDo = () => {
         <div>
             <ul>
                 {list.length?list.map((eachList)=>{
-                    return(
-                    
+                    return( 
                     <li key={eachList.id}>{eachList.task} 
                     <input type="checkbox" name="" id=""  checked={eachList.checked} 
                     onChange={()=>handleCheck(eachList.id)}/>
                     <button type="button" onClick={()=>handleDelete(eachList.id)}>Delete</button>
-                    </li>
-                
-                   
+                    </li>       
                 )}):<p>List is Empty</p>}
             </ul>
         </div>
     </div>
   )
 }
-
 export default ToDo

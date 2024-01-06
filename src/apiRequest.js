@@ -1,5 +1,3 @@
-
-
 const apiRequest = async(url="",OptionsObj=null) => {
     try {
         const response=await fetch(url,OptionsObj)
@@ -7,7 +5,5 @@ const apiRequest = async(url="",OptionsObj=null) => {
     } catch (error) {
         console.log(error.message);
     }
- 
 }
-
 export default apiRequest
