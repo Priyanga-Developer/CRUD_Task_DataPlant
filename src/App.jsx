@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 // import ClassComp from './Class'
 // import ErrorBoundary from './ErrorBoundary'
@@ -77,7 +77,7 @@ import PostPage from './RouterComponents/PostPage';
 import Post from "./RouterComponents/Post";
 import Missing from './RouterComponents/Missing';
 import { auth ,provider} from "./firebase/firebaseconfig";
-import { signInWithPopup } from "firebase/auth"
+import { onAuthStateChanged, signInWithPopup ,createUserWithEmailAndPassword, updateProfile} from "firebase/auth"
 
 const App = () => {
 //  const {count,handleOnclick}=useContext(DataContext)
@@ -86,6 +86,10 @@ const App = () => {
 //    console.log("useEffect");
 // },[])
 // console.log("function2");
+const [user,setUser]=useState("");
+const [email,setEmail] =useState("");
+const [password,setPassword]=useState("");
+const [name,setName]=useState("");
 
 const handleGoogleLogin=async()=>{
   try {
@@ -97,6 +101,26 @@ const handleGoogleLogin=async()=>{
      console.log(error.message);
   }
 }
+useEffect(()=>{
+  const subscribe= onAuthStateChanged(auth,(currentUser)=>{
+    setUser(currentUser)
+  })
+  return ()=>subscribe()
+},[])
+
+const handleSignUp=async()=>{
+  try {
+    const results=await createUserWithEmailAndPassword(auth,email,password);
+    const userProfile=results.user;
+    await updateProfile(userProfile,{displayName:name})
+    console.log(userProfile);
+
+  } catch (error) {
+    console.log(error.message);
+  }
+ 
+}
+
   return (
     <div>
       {/* <h1>{count}</h1>
@@ -122,6 +146,12 @@ const handleGoogleLogin=async()=>{
       </Routes> */}
       <h1>Login using Google</h1>
       <button type='button' onClick={()=>handleGoogleLogin()}>Login Using Google</button>
+      <form action="" onSubmit={(e)=>e.preventDefault()}>
+        <input type="text" placeholder='enter the name' value={name} onChange={(e)=>setName(e.target.value)}/>
+        <input type="email" placeholder='enter the email'  value={email} onChange={(e)=>setEmail(e.target.value)}/>
+        <input type="password" placeholder='enter the password'  value={password} onChange={(e)=>setPassword(e.target.value)} />
+        <button type='button' onClick={()=>handleSignUp()}> Sign Up using email and password </button>
+      </form>
     </div>
   )
 }
