@@ -76,19 +76,8 @@ import About from './RouterComponents/About';
 import PostPage from './RouterComponents/PostPage';
 import Post from "./RouterComponents/Post";
 import Missing from './RouterComponents/Missing';
-
-
- export const DashBoard = () => {
-  return (
-    <div >
-      <h1>Dashboard</h1>
-    
-      <Outlet/>
-    </div>
-  )
-}
-
-
+import { auth ,provider} from "./firebase/firebaseconfig";
+import { signInWithPopup } from "firebase/auth"
 
 const App = () => {
 //  const {count,handleOnclick}=useContext(DataContext)
@@ -97,6 +86,17 @@ const App = () => {
 //    console.log("useEffect");
 // },[])
 // console.log("function2");
+
+const handleGoogleLogin=async()=>{
+  try {
+    const results= await signInWithPopup(auth,provider);
+     console.log(auth?.currentUser?.email);
+     console.log(results.user.email);
+
+  } catch (error) {
+     console.log(error.message);
+  }
+}
   return (
     <div>
       {/* <h1>{count}</h1>
@@ -108,7 +108,7 @@ const App = () => {
       {/* <Event/> */}   
       {/* <ControlledInputs/> */}
       {/* <ToDo/> */}
-      <Header/>
+      {/* <Header/>
       <Footer/>
       <Routes>
         <Route path='/' element={<DashBoard/>}/>
@@ -119,7 +119,9 @@ const App = () => {
           <Route path=':id' element={<Post/>}/>
         </Route>
         <Route path='*' element={<Missing/>}/>
-      </Routes>
+      </Routes> */}
+      <h1>Login using Google</h1>
+      <button type='button' onClick={()=>handleGoogleLogin()}>Login Using Google</button>
     </div>
   )
 }
