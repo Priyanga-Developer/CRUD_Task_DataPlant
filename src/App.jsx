@@ -76,8 +76,9 @@ import About from './RouterComponents/About';
 import PostPage from './RouterComponents/PostPage';
 import Post from "./RouterComponents/Post";
 import Missing from './RouterComponents/Missing';
-import { auth ,provider} from "./firebase/firebaseconfig";
+import { auth ,dB,provider} from "./firebase/firebaseconfig";
 import { onAuthStateChanged, signInWithPopup ,createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut} from "firebase/auth"
+import { addDoc, collection, deleteDoc, getDocs,doc, updateDoc } from 'firebase/firestore';
 
 const App = () => {
 //  const {count,handleOnclick}=useContext(DataContext)
@@ -90,6 +91,11 @@ const [user,setUser]=useState("");
 const [email,setEmail] =useState("");
 const [password,setPassword]=useState("");
 const [name,setName]=useState("");
+const [movieList,setMovieList]=useState([]);
+const [title,setTitle]=useState("");
+const [year,setYear]=useState("");
+const [isAward,setIsAward]=useState(true);
+const [newTitle,setNewTitle]=useState("");
 
 const handleGoogleLogin=async()=>{
   try {
@@ -131,6 +137,7 @@ const handleLogin=async()=>{
   }
 }
 
+
 const handleSignOut=async()=>{
   try {
       await signOut(auth);
@@ -139,6 +146,61 @@ const handleSignOut=async()=>{
     console.log(error.message); 
   }
 }
+      {/* const [title,setTitle]=useState("");
+const [year,setYear]=useState("");
+const [isAward,setIsAward]=useState(true);
+const [newTitle,setNewTitle]=useState(""); */}
+const movieListRef = collection (dB,"movies");
+const getMovieList=async()=>{
+  try {
+  const data =await getDocs(movieListRef);
+  const filteredData= data.docs.map((doc)=>({...doc.data(),id:doc.id}))
+  setMovieList(filteredData);
+    
+  } catch (error) {
+    console.log(error.message);
+    
+  }
+
+ }
+const handleAdd=async()=>{
+  try {
+    const data=await addDoc(movieListRef,{
+      title:title,
+      receivedAward:isAward,
+      releaseDate:year
+    })
+   getMovieList()
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+const handleDelete =async(id)=>{
+  const newMovieDoc=doc(dB,"movies",id)
+   try {
+       await deleteDoc(newMovieDoc);
+       getMovieList();
+   } catch (error) {
+    console.log(error.message);
+   }
+}
+
+const handleUpdate=async(id)=>{
+  const newMovieDoc=doc(dB,"movies",id)
+   try {
+      const data=await updateDoc(newMovieDoc,{
+        title:newTitle
+      })
+      getMovieList()
+   } catch (error) {
+    console.log(error.message);
+   }
+}
+useEffect(()=>{
+   getMovieList();
+},[])
 
   return (
     <div>
@@ -166,13 +228,36 @@ const handleSignOut=async()=>{
       <h1>Login using Google</h1>
       <button type='button' onClick={()=>handleGoogleLogin()}>Login Using Google</button>
       <form action="" onSubmit={(e)=>e.preventDefault()}>
-        {/* <input type="text" placeholder='enter the name' value={name} onChange={(e)=>setName(e.target.value)}/> */}
+        <input type="text" placeholder='enter the name' value={name} onChange={(e)=>setName(e.target.value)}/>
         <input type="email" placeholder='enter the email'  value={email} onChange={(e)=>setEmail(e.target.value)}/>
         <input type="password" placeholder='enter the password'  value={password} onChange={(e)=>setPassword(e.target.value)} />
-        {/* <button type='button' onClick={()=>handleSignUp()}> Sign Up using email and password </button> */}
+        <button type='button' onClick={()=>handleSignUp()}> Sign Up using email and password </button>
         <button type='button' onClick={()=>handleLogin()}> Sign Up using email and password </button>
         <button type='button' onClick={()=>handleSignOut()}>SignOut</button>
       </form>
+
+      <form action="" onSubmit={(e)=>e.preventDefault()}>
+        <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)}  placeholder='enter the title'/>
+        <input type="number" value={year} onChange={(e)=>setYear(Number(e.target.value))}  placeholder='enter the movie year'  />
+        <input type="checkbox" checked={isAward} onChange={(e)=>setIsAward(e.target.checked)} />
+        <label>Received an oscar</label>
+        <button type='button' onClick={()=>handleAdd()}>Add</button>
+      </form>
+      <div>
+      {/* receivedAward
+      releaseDate
+       title */}
+
+          {movieList.map((movie)=>{
+            return <div key={movie.id}>
+              <h2 style={{color: movie.receivedAward? "green":"red"}}>{movie.title}</h2>
+              <p>{movie. releaseDate}</p>
+              <button type='button' onClick={()=>handleDelete(movie.id)}>Delete</button>
+              <input type='text' value={newTitle} onChange={(e)=>setNewTitle(e.target.value)} placeholder='enter the new title'/>
+              <button type='button' onClick={()=>handleUpdate(movie.id)}>Update</button>
+            </div>
+          })}
+      </div>
     </div>
   )
 }
