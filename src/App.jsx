@@ -267,96 +267,163 @@
 
 
 import React from 'react'
-
+import { compose ,pipe} from "lodash/fp"
 const App = () => {
 
-  const array=[1,2,3,4]
-  array.push(5); //it will change the original array
-  console.log(array);//[1,2,3,4,5]
+//   const array=[1,2,3,4]
+//   array.push(5); //it will change the original array
+//   console.log(array);//[1,2,3,4,5]
 
-  const array1=array.concat(7)
-  console.log(array1,"newarray");//it will not change the original arrayinstead it creates a new array
-  //[1,2,3,4,5,7]
+//   const array1=array.concat(7)
+//   console.log(array1,"newarray");//it will not change the original arrayinstead it creates a new array
+//   //[1,2,3,4,5,7]
 
-  const originalObj1={
-    a:2,
-    b:3,
-    c:4
-  }
-  originalObj1.a=22
-  console.log(originalObj1); //{a: 22, b: 3, c: 4} it changes the original object
+//   const originalObj1={
+//     a:2,
+//     b:3,
+//     c:4
+//   }
+//   originalObj1.a=22
+//   console.log(originalObj1); //{a: 22, b: 3, c: 4} it changes the original object
 
-  const obj1={
-    ...originalObj1,
-    a:45
-  }
-  console.log(obj1); //{a: 45, b: 3, c: 4} it does not chnage original object,it creates a new object
+//   const obj1={
+//     ...originalObj1,
+//     a:45
+//   }
+//   console.log(obj1); //{a: 45, b: 3, c: 4} it does not chnage original object,it creates a new object
 
-  //shallow Copy
-    const basket ={
-       fruit:"apple",
-       vegetable:"tomato",
-       snacks:"lays"
-    } 
-    const basket2={
-      ...basket,
-       fruit:"banana"
-    }
-    console.log(basket, "original");//{"fruit": "apple","vegetable": "tomato", "snacks": "lays"}
-    console.log(basket2 ,"new");//{fruit: 'banana', vegetable: 'tomato', snacks: 'lays'}
-    //Shallow copy has a challenge when we have nested objects.
-    const newShopping={
-      shop1:{
-        fruits:"mango",
-        vegetable:"brinjal",
-        snacks:"biscuit"
-      }
-    }
-    const basket3={
-          ...newShopping,fruits:"no fruits"
-    }
-    console.log(newShopping,"original");
-  //   {
-  //     "shop1": {
-  //         "fruits": "mango",
-  //         "vegetable": "brinjal",
-  //         "snacks": "biscuit"
-  //     }
-  // }
-    console.log(basket3,"new");
-  //   {
-  //     "shop1": {
-  //         "fruits": "mango",
-  //         "vegetable": "brinjal",
-  //         "snacks": "biscuit"
-  //     },
-  //     "fruits": "no fruits"
-  // }  /// It does not change the fruit property in shop1 ,so we have to do something called deep copy
-
-  //Deep Copy
-
-  const basket4={
-    ...newShopping,shop1:{
-      ...newShopping.shop1, fruits:"no fruits"
-    }
-  }
-  console.log(basket4,"deepcopy"); 
-//   {
-//     "shop1": {
-//         "fruits": "no fruits",
-//         "vegetable": "brinjal",
-//         "snacks": "biscuit"
+//   //shallow Copy
+//     const basket ={
+//        fruit:"apple",
+//        vegetable:"tomato",
+//        snacks:"lays"
+//     } 
+//     const basket2={
+//       ...basket,
+//        fruit:"banana"
 //     }
-// }
-  console.log(newShopping,"original");
-
-//   {
-//     "shop1": {
-//         "fruits": "mango",
-//         "vegetable": "brinjal",
-//         "snacks": "biscuit"
+//     console.log(basket, "original");//{"fruit": "apple","vegetable": "tomato", "snacks": "lays"}
+//     console.log(basket2 ,"new");//{fruit: 'banana', vegetable: 'tomato', snacks: 'lays'}
+//     //Shallow copy has a challenge when we have nested objects.
+//     const newShopping={
+//       shop1:{
+//         fruits:"mango",
+//         vegetable:"brinjal",
+//         snacks:"biscuit"
+//       }
 //     }
-// }
+//     const basket3={
+//           ...newShopping,fruits:"no fruits"
+//     }
+//     console.log(newShopping,"original");
+//   //   {
+//   //     "shop1": {
+//   //         "fruits": "mango",
+//   //         "vegetable": "brinjal",
+//   //         "snacks": "biscuit"
+//   //     }
+//   // }
+//     console.log(basket3,"new");
+//   //   {
+//   //     "shop1": {
+//   //         "fruits": "mango",
+//   //         "vegetable": "brinjal",
+//   //         "snacks": "biscuit"
+//   //     },
+//   //     "fruits": "no fruits"
+//   // }  /// It does not change the fruit property in shop1 ,so we have to do something called deep copy
+
+//   //Deep Copy
+
+//   const basket4={
+//     ...newShopping,shop1:{
+//       ...newShopping.shop1, fruits:"no fruits"
+//     }
+//   }
+//   console.log(basket4,"deepcopy"); 
+// //   {
+// //     "shop1": {
+// //         "fruits": "no fruits",
+// //         "vegetable": "brinjal",
+// //         "snacks": "biscuit"
+// //     }
+// // }
+//   console.log(newShopping,"original");
+
+// //   {
+// //     "shop1": {
+// //         "fruits": "mango",
+// //         "vegetable": "brinjal",
+// //         "snacks": "biscuit"
+// //     }
+// // }
+
+//function reference
+
+function pressLike(){
+ return console.log("Thanks a lot");
+}
+const pl=pressLike // no output ,just referred
+pl() //Thanks a lot
+
+// Higher Order Function -Takes a function as argument in a function or return a function eg .map,filter,reduce
+function message (){
+  return "Hello world"
+}
+function SaySomething(func) {
+   console.log(func);
+}
+SaySomething(message) //ƒ message() { return "Hello world";}
+SaySomething(message())// "hello world"
+
+//example2 
+
+const text="   Redux  "
+const trim = str=> str.trim()
+const lowerCase= str=>str.toLowerCase()
+
+
+const result=(text)=>{
+  return console.log( `<div>${text}</div>`);
+}
+result(lowerCase(trim(text))) //<div>redux</div> left to right
+
+//introduced a library  lodash import { compose ,pipe} from "lodash/fp"
+//1. compose 
+ const composing=compose(result,lowerCase,trim) //right to left
+composing(text)
+//2.Pipe 
+const piping=pipe(trim,lowerCase,result) //easy ,left to right
+piping(text)
+
+//Currying Taking multiple arguments and taking one by one ,nesting in function
+function add(a){
+  return (b)=>{
+       return console.log(a+b); //5
+  }
+} 
+add(3)(2);
+const text2="   Redux  "
+const trim2 = str=> str.trim()
+const lowerCase2= str=>str.toLowerCase()
+const result2=(type)=>{
+ return (text) =>console.log( `<${type}>${text}</${type}>`);
+}
+const curryingPipe=pipe(trim2,lowerCase2,result2)
+curryingPipe("span")(text2)///<span>Redux</span>
+
+//Pure Function - result will not change 
+function randomNum(num){ //Impure function
+  return num* Math.random() // output changes ,not predicatable
+}
+function Num(num){ //pure function
+  return num* 3 // output not chnages , predicatable
+}
+
+
+
+
+
   return (
     <div>App</div>
   )
