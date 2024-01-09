@@ -28,7 +28,6 @@ export const toDoSlice=createSlice({
          }
          return todo
         })
-        
      }
     }
 })

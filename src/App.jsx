@@ -269,6 +269,7 @@
 import React from 'react'
 import Counter from './Component/Counter'
 import ToDoList from './Component/ToDoList'
+import Row from './Component/Row'
 // import { compose ,pipe} from "lodash/fp"
 const App = () => {
 
@@ -421,11 +422,20 @@ const App = () => {
 // function Num(num){ //pure function
 //   return num* 3 // output not chnages , predicatable
 // }
+const users="users"
+const posts ="posts"
+const todos	="todos"
+const heading1="users"
+const heading2="posts"
+const heading3="todos"
 
   return (
     <div>
       <Counter/>
       <ToDoList/>
+      <Row fetchURL={users} heading={heading1}/>
+      <Row fetchURL={posts} heading={heading2}/>
+      <Row fetchURL={todos} heading={heading3}/>
     </div>
   )
 }
