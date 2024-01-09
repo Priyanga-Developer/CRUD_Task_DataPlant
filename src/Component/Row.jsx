@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { newDatas ,getErrors,getStatus, dataFetching } from '../features/apigrab/userSlice';
+import useWindowSize from '../Hooks/useWindowSize';
 
 
 const Row = ({fetchURL ,heading}) => {
@@ -8,6 +9,7 @@ const Row = ({fetchURL ,heading}) => {
     const fetchedErrors=useSelector(getErrors);
     const fetchedStatus=useSelector(getStatus);
     const dispatch=useDispatch();
+    const {width}=useWindowSize();
    
     useEffect(()=>{
         if(fetchedStatus==="idle"){
@@ -25,6 +27,9 @@ const Row = ({fetchURL ,heading}) => {
         })}
           
         </ul>
+        <div>
+            <h1 style={{color: width>768 ? "red" :"green"}}>Hello world</h1>
+        </div>
     </div>
   )
 }
