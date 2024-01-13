@@ -3,12 +3,11 @@ import "./Table.css"
 import "./FilterTab.css"
 import EditForm from '../Components/EditForm';
 import TableData from '../Components/TableData';
-import { useContext } from 'react';
-import DataContext from '../Hooks/DataContext';
+
 
 
 const Table = ( ) => {
-  const {show,handleClose,handleShow,schedules, fetchSchedules,handleDelete}=useContext(DataContext)
+
   return (
     <div className='tableContainer'>
                     <table>

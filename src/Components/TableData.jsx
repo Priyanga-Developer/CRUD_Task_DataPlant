@@ -4,7 +4,7 @@ import EditForm from './EditForm';
 
 const TableData = () => {
     const {schedules,
-      handleDelete,handleEdit,displayTime,data,setData}=useContext(DataContext)
+      handleDelete,handleEdit,displayTime}=useContext(DataContext)
   
    
   return (
@@ -14,7 +14,7 @@ const TableData = () => {
                      <td className='titleBody'>  {schedule.title}</td>
                      <td className='bodyDescription'>{schedule.description}</td>
                      <td className='bodySubject'>{schedule.subject}</td>
-                     <td className='bodySchedule'>{schedule.frequency} at {schedule.repeat} at {displayTime(schedule.time)}</td>
+                     <td className='bodySchedule'>{schedule.frequency} {schedule.frequency === 'Weekly'? "on" : "at"} {schedule.repeat} at {displayTime(schedule.time)}</td>
                      <td className='bodyActions'>
                        <div style={{display:"flex", gap:"16px"}}>
                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" onClick={()=>handleEdit(schedule.id)}>
