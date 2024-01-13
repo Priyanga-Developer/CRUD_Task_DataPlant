@@ -1,40 +1,22 @@
 {
   "schedules": [
     {
-      "title": "bhbh",
-      "description": "njnj",
-      "subject": "bhbh",
+      "title": "Sample title",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae tincidunt est, dictum convallis purus. Fusce eu est a lacus luctus sodales id vitae diam. Ut interdum tristique ....",
+      "subject": "Sample subject",
       "frequency": "Weekly",
       "repeat": "Monday",
       "time": "14:00",
-      "id": 4
+      "id": 9
     },
     {
-      "title": "jshjs",
-      "description": "sjnjsjs",
-      "subject": "djnjdnjd",
-      "frequency": "Weekly",
-      "repeat": "Sunday",
-      "time": "10:02",
-      "id": 6
-    },
-    {
-      "title": "jsnjdnjd",
-      "description": "dnjdnd",
-      "subject": "dndkdn",
-      "frequency": "Weekly",
-      "repeat": "Monday",
-      "time": "13:00",
-      "id": 7
-    },
-    {
-      "title": "ksmksm",
-      "description": "snjsns",
-      "subject": "snskns",
+      "title": "Sample title 2",
+      "description": "\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae tincidunt est, dictum convallis purus. Fusce eu est a lacus luctus sodales id vitae diam. Ut interdum tristique ....",
+      "subject": "Sample subject2",
       "frequency": "Monthly",
       "repeat": "Last Friday",
-      "time": "09:05",
-      "id": 8
+      "time": "11:00",
+      "id": 10
     }
   ]
 }
