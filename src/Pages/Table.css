@@ -1,0 +1,83 @@
+.tableContainer{
+    width: 100%;
+    padding: 24px 56px 31px 24px;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;   
+}
+td, th {
+    border: none;
+}
+
+thead{
+    height: 42px;
+    border: 1px solid #EEE;
+    background: var(--Blue10, rgba(60, 30, 90, 0.10));
+   
+}
+th{
+    color: #333;
+    font-family: "Nunito Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+}
+tbody{
+    height: 60px;
+    background: #FFF;
+    color: #333;
+    font-family: "Nunito Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+tr{
+    border: 1px solid var(--Blue10, rgba(60, 30, 90, 0.10)) !important;
+    border-bottom: 1px solid var(--Blue10, rgba(60, 30, 90, 0.10)) !important;
+}
+.titleHead{
+    width:206px;
+    padding:12px 153px 11px 24px;
+}
+.titleDescription{
+    width:590px;
+    padding: 12px 517px 11px 0px;
+}
+.titleSubject{
+    width: 131px;
+    padding: 12px 83px 11px 0px;
+}
+.titleSchedule{
+    width: 143px;
+    padding: 12px 84px 11px 0px;
+}
+
+.titleActions{
+    width: 290px;
+    padding: 12px 241px 11px 0px;
+}
+.titleBody{
+    width:206px;
+    padding: 21px 32px 20px 24px;
+}
+.bodyDescription{
+    width: 590px;
+    padding: 10px 32px 11px 0px;
+}
+.bodySubject{
+    width: 131px;
+    padding: 21px 32px 20px 0px;
+}
+.bodySchedule{
+    width: 143px;
+    padding: 21px 32px 20px 0px;
+}
+.bodyActions{
+    width: 290px;
+    padding: 22px 242px 22px 0px;
+}
+

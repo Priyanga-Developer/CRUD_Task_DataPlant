@@ -1,9 +1,40 @@
 {
-  "todo_list": [
+  "schedules": [
     {
-      "id": 1704507737851,
-      "task": "movieflix",
-      "checked": true
+      "title": "mango",
+      "description": "peacoksssnnnn",
+      "subject": "subject",
+      "frequency": "Weekly",
+      "repeat": "Thursday",
+      "time": "20:15",
+      "id": 3
+    },
+    {
+      "title": "bhbh",
+      "description": "njnj",
+      "subject": "bhbh",
+      "frequency": "Weekly",
+      "repeat": "Monday",
+      "time": "14:00",
+      "id": 4
+    },
+    {
+      "title": "njdnd",
+      "description": "dnjdnjd",
+      "subject": "djnjdn",
+      "frequency": "Weekly",
+      "repeat": "Sunday",
+      "time": "09:00",
+      "id": 5
+    },
+    {
+      "title": "jshjs",
+      "description": "sjnjsjs",
+      "subject": "djnjdnjd",
+      "frequency": "Weekly",
+      "repeat": "Sunday",
+      "time": "10:02",
+      "id": 6
     }
   ]
 }

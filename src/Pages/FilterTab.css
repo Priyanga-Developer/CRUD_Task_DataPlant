@@ -1,0 +1,166 @@
+.main{
+    width: 100%;
+    height: 38px;
+    padding: 24px 56px 31px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.modalBackground{
+    cursor: pointer;
+    background: #FFF;
+    position: absolute;
+    right: 119px;
+    top: 140px;
+    padding: 16px;
+    filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.10));
+    border-radius: 4px;
+}
+.searchInput{
+    width: 300px;
+    height: 38px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #E4E4EE;
+    background: #FFF;
+    color: #999;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-left: 11px;
+    padding: 10px 0px 10px 11px;
+}
+
+/* Hide the clear button in Chrome, Safari, and Edge */
+.searchInput::-webkit-search-clear-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+  
+  /* Hide the clear button in Firefox */
+  .searchInput::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+  
+  /* Hide the clear button in Edge */
+  .searchInput::-ms-clear {
+    display: none;
+  }
+  .search-Container{
+    position: relative;
+  }
+  
+.searchIcon{
+    position: absolute;
+    top: 50%;
+    right: 8.26px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.addBtn{
+    background-color:#391E5A;
+    border-radius: 4px;
+    border-color: #391E5A;
+    color:#FFFFFF;
+    gap:8px; 
+    display:inline-flex;
+    padding:8px;
+    align-items: center;
+    justify-content: center;
+}
+.title h1{
+    color: #333;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    padding-bottom: 17px;
+}
+.inputContainer{
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    padding-bottom: 15px;
+}
+input,textarea,select{
+    width: 216px;
+    padding: 8px 40px 8px 16px;
+    font-family: "Nunito Sans";
+    border-radius: 4px;
+    border: 1px solid rgba(60, 30, 90, 0.1);
+    background: #FFF;
+    color: #333;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    outline: none;
+}
+
+.cancelBtn{
+    width: 88px;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid #E4E4EE;
+    background: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-family: "Nunito Sans";
+
+
+}
+.doneBtn{
+    width: 80px;
+    height: 32px;
+    color: #FFF;
+    border-radius: 4px;
+    border-color: #391E5A;
+    outline: none;
+    background: #391E5A;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-family: "Nunito Sans";
+    
+
+}
+.modalBackground .footer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 19px;
+}
+.repeatDaily{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.editBlock{
+    right: 175px;
+    top: 282px;
+}
+.optionBtn{
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    border-color: rgba(60, 30, 90, 0.1);
+    background-color: white;
+    font-size: 14px;
+    font-family: "Nunito Sans";
+}
+.selected {
+    background-color:  #391E5A; 
+    color: white;
+}
