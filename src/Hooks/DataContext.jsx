@@ -24,11 +24,11 @@ import axios from '../api/axios';
       time: '09:00',
     });
     const [showAdd, setShowAdd] = useState(false);
-    const handleAddClose = () => setShowAdd(true);
+    const handleAddClose = () => setShowAdd(!showAdd);
     const handleAddShow = () => setShowAdd(true);
     const [showEdit, setShowEdit] = useState(false);
-    const handleEditClose = () => setEditShow(true);
-    const handleEditShow = () => setAddShow(true);
+    const handleEditClose = () => setShowEdit(!showEdit);
+    const handleEditShow = () => setShowEdit(true);
     const handleEdit=(scheduleId)=>{
             handleEditShow();
             const schedule=schedules.find(schedule=>schedule.id===scheduleId);
@@ -80,6 +80,7 @@ import axios from '../api/axios';
     } catch (error) {
       console.error('Error saving schedule:', error);
     }
+    handleAddClose();
   };
   
   const handleDayClick = (day) => {
